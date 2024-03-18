@@ -12,7 +12,6 @@ import sys
 import asyncio
 import firebase_admin
 from firebase_admin import credentials, auth
-from fastapi.staticfiles import StaticFiles
 
 
 firebase_app = firebase_admin.initialize_app(credentials.Certificate("firebase_credentials.json"))
@@ -72,7 +71,6 @@ gpt_controller = GPTController(os.getenv('OPENAI_API_KEY'))
 session_manager = SessionManager()
 # user_manager = UserManager()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.post("/fetch_campaigns/")
 async def fetch_campaigns(input: FetchCampaignsInput):
